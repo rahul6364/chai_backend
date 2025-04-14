@@ -3,19 +3,19 @@ import connectDB from "./db/index.js"
 import { app } from "./app.js"
 
 dotenv.config({
-    path: './env'
+    path: './.env'
 })
 
 connectDB()
 .then(()=>{
     app.listen(process.env.PORT || 8000,()=>{
         console.log(`server is running at port: ${process.env.PORT}`);
-        
+        console.log("http://localhost:8000/api/v1/users/register")
     })
 })
 .catch((err)=>{
-    console.log("Mongo DB connection failed !!!",err);
-    
+    console.log("Mongo DB connection failed !!!",err.message);
+    process.exit(1);
 })
 
 
